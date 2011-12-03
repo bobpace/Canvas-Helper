@@ -1,42 +1,33 @@
 (function($) {
+
   $.fn.drawomatic = function(options) {
-      var settings = $.extend({
-          //default options here
-          }, options),
-          center = function(parent, canvas) {
-            var left = (parent.width() - canvas.outerWidth())/2,
-                top = (parent.height() - canvas.outerHeight())/2;
-            canvas.css({
-              position: 'absolute',
-              left: left,
-              top: top
-            });
-          },
-          drawImage = function(parent, canvas) {
-            var src = settings['image'],
-                image;
 
-            if (src) {
-              image = new Image();
-              image.onload = function() {
-                var ctx = canvas[0].getContext("2d");
-                canvas.width(image.width);
-                //canvas.height(image.height);
-                ctx.drawImage(image, 10, 10);
-                //center(parent, canvas);
-              };
-              image.src = src;
-            }
-          };
+    var settings = $.extend({}, options);
 
-      return this.each(function() {
-        var $this = $(this),
-            canvas = $this.find('canvas');
+    return this.each(function() {
+      var canvas = this,
+          $canvas = $(this),
+          src = settings['image'],
+          image;
 
-        if (canvas.size()) {
-          drawImage($this, canvas);
-        }
-      });
+      if (this.tagName !== "CANVAS") {
+        return;
+      }
+
+      canvas.width = $canvas.width();
+      canvas.height = $canvas.height();
+
+      if (src) {
+        image = new Image();
+        image.onload = function() {
+          var ctx = canvas.getContext("2d"),
+              left = (canvas.width - image.width)/2,
+              top = (canvas.height - image.height)/2;
+          ctx.drawImage(image, left, top);
+        };
+        image.src = src;
+      }
+    });
   };
 
 }(jQuery))
