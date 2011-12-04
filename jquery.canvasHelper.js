@@ -1,6 +1,6 @@
 (function($) {
 
-  $.fn.drawomatic = function(options) {
+  $.fn.canvasHelper = function(options) {
 
     var settings = $.extend({}, options);
 

@@ -1,4 +1,4 @@
 $(function() {
-  var boards = $(".drawing-board");
-  boards.drawomatic({image: './images/test.jpg'});
+  var canvas = $(".image-canvas");
+  canvas.canvasHelper({image: './images/test.jpg'});
 });
