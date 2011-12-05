@@ -5,25 +5,26 @@
     var settings = $.extend({}, options);
 
     return this.each(function() {
-      var canvas = this,
-          $canvas = $(this),
+      var $container = $(this),
+          $canvas = $container.find('canvas'),
+          canvas = $canvas[0],
           src = settings['image'],
           image;
-
-      if (this.tagName !== "CANVAS") {
-        return;
-      }
-
-      canvas.width = $canvas.width();
-      canvas.height = $canvas.height();
 
       if (src) {
         image = new Image();
         image.onload = function() {
-          var ctx = canvas.getContext("2d"),
-              left = (canvas.width - image.width)/2,
-              top = (canvas.height - image.height)/2;
-          ctx.drawImage(image, left, top);
+          var ctx, left, top;
+
+          canvas.width = image.width;
+          canvas.height = image.height;
+
+          ctx = canvas.getContext("2d"),
+          left = ($container.width() - canvas.width)/2,
+          top = ($container.height() - canvas.height)/2;
+
+          $canvas.css({position:'absolute', top: top, left: left});
+          ctx.drawImage(image, 0, 0);
         };
         image.src = src;
       }

@@ -1,4 +1,4 @@
 $(function() {
-  var canvas = $(".image-canvas");
-  canvas.canvasHelper({image: './images/test.jpg'});
+  var container = $(".image-container");
+  container.canvasHelper({image: './images/test.jpg'});
 });
