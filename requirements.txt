@@ -1,0 +1,21 @@
+div with set dimensions 318x262
+inside should be canvas which draws image at native resolution
+movable within set viewport,
+
+options:
+select a new image
+
+save image with configuration and be able to reload it
+
+second canvas with novella on left side which shows contents of right canvas
+image with transparency, canvas underneath it with zindex so it shows
+
+merge the two images together once they hit approved, save main image with configuration
+and save the novella image with the coordinate positioning configuration for the saved canvas
+
+
+be able to choose freely between saved configurations
+
+
+saved novellas will be in a UL, with a LI and the selected one will be marked
+with .selected class

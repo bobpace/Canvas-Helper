@@ -2,14 +2,23 @@
 <html>
   <head>
     <link rel="stylesheet" href="./test.css" />
+    <link rel="stylesheet" href="./jquery.thumbs.css" />
   </head>
   <body>
-    <canvas class="image-canvas">
-    </canvas>
-    <canvas class="image-canvas">
-    </canvas>
+    <div id="drawing-container">
+      <ul class="horizontal-list" data-bind='template: { name: "imageTemplate", foreach: images}'>
+      </ul>
+      <div class="test"></div>
+    </div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script type="text/javascript" src="./jquery.canvasHelper.js"></script>
+    <script type="text/javascript" src="./jquery.tmpl.js"></script>
+    <script type="text/javascript" src="./knockout-1.2.1.js"></script>
+    <script type="text/javascript" src="./jquery.thumbs.js"></script>
     <script type="text/javascript" src="./test.js"></script>
+    <script id="imageTemplate" type="text/x-jquery-tmpl">
+      <li>
+        <img class="thumbs" src="./images/${$data.path}"/>
+      </li>
+    </script>
   </body>
 </html>

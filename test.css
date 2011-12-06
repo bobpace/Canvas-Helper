@@ -1,5 +1,27 @@
-.image-canvas {
-  width: 500px;
-  height: 500px;
+#drawing-container {
+  margin: 0 auto;
+  width: 920px;
+}
+
+.horizontal-list {
+  overflow: hidden;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.horizontal-list li {
+  display: inline;
+  float: left;
+}
+
+#viewport {
+  width: 318px;
+  height: 262px;
   border: 1px solid black;
+}
+
+.test {
+  border: 1px solid red;
+  height: 50px;
 }
