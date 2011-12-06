@@ -1,11 +1,6 @@
-.image-canvas {
-  width: 500px;
-  height: 500px;
-}
-
 #drawing-container {
   margin: 0 auto;
-  width: 920px;
+  width: 500px;
 }
 
 .horizontal-list {
@@ -20,12 +15,10 @@
   float: left;
 }
 
-#viewport {
+.viewport {
   width: 318px;
   height: 262px;
-}
-
-.test {
-  border: 1px solid red;
-  height: 50px;
+  position: relative;
+  border: 1px solid black;
+  float: right;
 }
