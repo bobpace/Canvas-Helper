@@ -1,3 +1,6 @@
+.image-canvas {
+  width: 500px;
+  height: 500px;
 #drawing-container {
   margin: 0 auto;
   width: 920px;
@@ -18,6 +21,10 @@
 #viewport {
   width: 318px;
   height: 262px;
+.image-container {
+  position: relative;
+  width: 500px;
+  height: 500px;
   border: 1px solid black;
 }
 
