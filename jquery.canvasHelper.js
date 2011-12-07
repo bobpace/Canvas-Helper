@@ -14,6 +14,7 @@
           if (innerCanvas) {
             innerPosition = innerPosition || {left: 0, top:0};
             ctx.drawImage(innerCanvas, innerPosition.left, innerPosition.top);
+            console.log('left: ' + innerPosition.left + ', top: ' + innerPosition.top);
           }
           ctx.drawImage(image, 0, 0);
         },
