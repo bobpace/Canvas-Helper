@@ -29,9 +29,9 @@ $(function() {
     };
 
     viewModel.selectedImage.subscribe(function(data) {
-      var imageViewport = $(".image-viewport"),
+      var imageViewport = $("#image-viewport"),
           imageCanvas = imageViewport.find('canvas')[0]
-          novellaViewport = $(".novella-viewport"),
+          novellaViewport = $("#novella-viewport"),
           $novellaCanvas = novellaViewport.find('canvas');
 
       imageViewport.canvasHelper({

@@ -5,13 +5,13 @@
     <link rel="stylesheet" href="./jquery.thumbs.css" />
   </head>
   <body>
-    <div id="drawing-container">
+    <div id="container">
       <ul class="horizontal-list" data-bind='template: { name: "imageTemplate", foreach: images}'>
       </ul>
-      <div class="novella-viewport">
+      <div id="novella-viewport" class="viewport">
         <canvas></canvas>
       </div>
-      <div class="image-viewport">
+      <div id="image-viewport" class="viewport">
         <canvas></canvas>
       </div>
     </div>
@@ -23,8 +23,8 @@
     <script type="text/javascript" src="./jquery.thumbs.js"></script>
     <script type="text/javascript" src="./test.js"></script>
     <script id="imageTemplate" type="text/x-jquery-tmpl">
-      <li>
-        <img data-bind='click: selected' class="thumbs" src="${$data.path}"/>
+      <li class="unselectable">
+        <img data-bind='click: selected' class="thumbs unselectable" src="${$data.path}"/>
       </li>
     </script>
   </body>

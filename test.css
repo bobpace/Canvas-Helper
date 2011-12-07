@@ -1,4 +1,4 @@
-#drawing-container {
+#container {
   margin: 0 auto;
   width: 710px;
 }
@@ -15,20 +15,25 @@
   float: left;
 }
 
-.image-viewport {
+.viewport {
   width: 318px;
   height: 262px;
   position: relative;
   border: 1px solid black;
-  float: right;
   overflow: hidden;
 }
 
-.novella-viewport {
-  width: 318px;
-  height: 262px;
-  position: relative;
-  border: 1px solid black;
+.unselectable {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#novella-viewport {
   float: left;
-  overflow: hidden;
+}
+
+#image-viewport {
+  float: right;
 }
