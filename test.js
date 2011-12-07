@@ -19,7 +19,8 @@ $(function() {
       new ImageHelper('Koala.jpg'),
       new ImageHelper('Penguins.jpg'),
       new ImageHelper('Lighthouse.jpg'),
-      new ImageHelper('Chrysanthemum.jpg')
+      new ImageHelper('Chrysanthemum.jpg'),
+      new ImageHelper('Jellyfish.jpg'),
     ];
 
     viewModel = {
@@ -28,7 +29,15 @@ $(function() {
     };
 
     viewModel.selectedImage.subscribe(function(data) {
-      $(".viewport").canvasHelper({image: data.path});
+      var imageViewport = $(".image-viewport"),
+          imageCanvas = imageViewport.find('canvas')[0]
+          novellaViewport = $(".novella-viewport");
+
+      imageViewport.canvasHelper({image: data.path});
+      novellaViewport.canvasHelper({
+        image: './images/previewWindow.png',
+        innerCanvas: imageCanvas
+      });
     });
 
     viewModel.selectedImage(images[0])

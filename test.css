@@ -1,6 +1,6 @@
 #drawing-container {
   margin: 0 auto;
-  width: 960px;
+  width: 710px;
 }
 
 .horizontal-list {
@@ -15,11 +15,20 @@
   float: left;
 }
 
-.viewport {
+.image-viewport {
   width: 318px;
   height: 262px;
   position: relative;
   border: 1px solid black;
   float: right;
+  overflow: hidden;
+}
+
+.novella-viewport {
+  width: 318px;
+  height: 262px;
+  position: relative;
+  border: 1px solid black;
+  float: left;
   overflow: hidden;
 }

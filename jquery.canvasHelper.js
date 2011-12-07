@@ -9,6 +9,7 @@
           $canvas = $container.find('canvas'),
           canvas = $canvas[0],
           src = settings['image'],
+          innerCanvas = settings['innerCanvas'],
           image;
 
       if (src) {
@@ -24,6 +25,9 @@
           top = ($container.height() - canvas.height)/2;
 
           $canvas.css({position:'absolute', top: top, left: left});
+          if (innerCanvas) {
+            ctx.drawImage(innerCanvas, 0, 0);
+          }
           ctx.drawImage(image, 0, 0);
         };
         image.src = src;
