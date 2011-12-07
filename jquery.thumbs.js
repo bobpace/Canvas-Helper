@@ -32,13 +32,10 @@ $.fn.thumbs = function(options) {
     classNames: {
       center: 'thumb-center',
       container: 'thumb-container',
-      icon: 'thumb-icon',
       img: 'thumb-img',
       inner: 'thumb-inner',
-      strip: 'thumb-strip'
     },
-    html: '<span class="%container%"><span class="%inner%"><span class="%img%"></span><span class="%strip%">%strip_content%</span><span class="%icon%"></span></span></span>',
-    strip: true
+    html: '<span class="%container%"><span class="%inner%"><span class="%img%"></span></span></span>'
   };
   
   options = $.extend(true, {}, defaults, options);
@@ -48,8 +45,7 @@ $.fn.thumbs = function(options) {
         c = options.classNames,
         clone = $thumb.clone(true),
         html = new String(options.html),
-        centered = false,
-        strip = '';
+        centered = false;
     
     for (className in c) {
       var newClassName = c[className];
@@ -61,14 +57,6 @@ $.fn.thumbs = function(options) {
       
       html = html.replace('%' + className + '%', newClassName);
     }
-    
-    if (options.strip) {
-      strip = $thumb.is('img') ? $thumb.attr('alt') : $thumb.find('img').attr('alt');
-      strip = strip != undefined ? strip : $thumb.attr('title');
-      strip = strip != undefined ? strip : '';
-    }
-    
-    html = html.replace('%strip_content%', strip);
     
     $thumb.wrap( html );
     

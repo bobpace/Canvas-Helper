@@ -1,6 +1,6 @@
 #drawing-container {
   margin: 0 auto;
-  width: 500px;
+  width: 960px;
 }
 
 .horizontal-list {
@@ -21,4 +21,5 @@
   position: relative;
   border: 1px solid black;
   float: right;
+  overflow: hidden;
 }
