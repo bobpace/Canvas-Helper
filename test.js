@@ -1,4 +1,3 @@
-
 $(function() {
   var ImageHelper = function(src) {
         this.path = this.imagePath + src;
@@ -32,18 +31,17 @@ $(function() {
       var imageViewport = $("#image-viewport"),
           imageCanvas = imageViewport.find('canvas')[0]
           novellaViewport = $("#novella-viewport"),
-          $novellaCanvas = novellaViewport.find('canvas');
-
-      imageViewport.canvasHelper({
-        image: data.path,
-        drag: function(position) {
-          //TODO: update novella with new coordinates
-        }
-      });
-      novellaViewport.canvasHelper({
-        image: './images/previewWindow.png',
-        innerCanvas: imageCanvas
-      });
+          novellaCanvas = novellaViewport.find('canvas')[0],
+          imageCanvasHelper = imageViewport.canvasHelper({
+            image: data.path,
+            drag: function(position) {
+              novellaCanvasHelper.redraw(position);
+            }
+          }),
+          novellaCanvasHelper = novellaViewport.canvasHelper({
+            image: './images/previewWindow.png',
+            innerCanvas: imageCanvas
+          });
     });
 
     viewModel.selectedImage(images[0])
