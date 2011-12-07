@@ -10,7 +10,17 @@
           canvas = $canvas[0],
           src = settings['image'],
           innerCanvas = settings['innerCanvas'],
+          drag = settings['drag'],
           image;
+
+      if (typeof drag === 'function') {
+        $canvas.draggable({
+          drag: function(event, ui) {
+            var position = $canvas.position();
+            drag(position);
+          }
+        });
+      }
 
       if (src) {
         image = new Image();
@@ -24,7 +34,12 @@
           left = ($container.width() - canvas.width)/2,
           top = ($container.height() - canvas.height)/2;
 
-          $canvas.css({position:'absolute', top: top, left: left});
+          $canvas.css({
+            position:'absolute',
+            top: top,
+            left: left
+          });
+
           if (innerCanvas) {
             ctx.drawImage(innerCanvas, 0, 0);
           }
