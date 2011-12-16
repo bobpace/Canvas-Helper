@@ -1,6 +1,15 @@
 #container {
   margin: 0 auto;
-  width: 710px;
+  width: 960px;
+  overflow: hidden;
+}
+
+#design-images li {
+  margin: 5px;
+}
+
+#design-items {
+  clear: both;
 }
 
 .horizontal-list {
@@ -16,11 +25,8 @@
 }
 
 .viewport {
-  width: 318px;
-  height: 262px;
   position: relative;
   border: 1px solid black;
-  overflow: hidden;
 }
 
 .unselectable {
@@ -31,9 +37,15 @@
 }
 
 #novella-viewport {
+  display: inline;
   float: left;
+  width: 153px;
+  height: 190px;
 }
 
 #image-viewport {
+  display: inline;
   float: right;
+  width: 400px;
+  height: 300px;
 }

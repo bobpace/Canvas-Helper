@@ -6,26 +6,17 @@
   </head>
   <body>
     <div id="container">
-      <ul class="horizontal-list" data-bind='template: { name: "imageTemplate", foreach: images}'>
+      <ul id="design-images" class="horizontal-list">
       </ul>
       <div id="novella-viewport" class="viewport">
-        <canvas></canvas>
       </div>
       <div id="image-viewport" class="viewport">
-        <canvas></canvas>
       </div>
+      <ul id="design-items" >
+      </ul>
     </div>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="./jquery.tmpl.js"></script>
-    <script type="text/javascript" src="./knockout-1.2.1.js"></script>
-    <script type="text/javascript" src="./jquery.thumbs.js"></script>
-    <script type="text/javascript" src="./jquery.canvashelper.js"></script>
-    <script type="text/javascript" src="./test.js"></script>
-    <script id="imageTemplate" type="text/x-jquery-tmpl">
-      <li class="unselectable">
-        <img data-bind='click: selected' class="thumbs unselectable" src="${$data.path}"/>
-      </li>
-    </script>
+    <script type="text/javascript" src="./canvas.js"></script>
   </body>
 </html>
