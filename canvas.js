@@ -5,7 +5,6 @@
         'Jellyfish.jpg',
         'Desert.jpg',
         'Hydrangeas.jpg',
-        'Jellyfish.jpg',
         'Koala.jpg',
         'Lighthouse.jpg',
         'Penguins.jpg',
@@ -23,7 +22,13 @@
   
   loadImages({
       target: '#design-images',
-      images: images
+      images: images,
+      clickHandler: function() {
+        var $this = $(this),
+            imageInfo = $this.data('imageInfo');
+
+        console.log(imageInfo.imagePath);
+      }
     }
   );
 
@@ -71,16 +76,22 @@
   function loadImages(options) {
     var defaults = {width: 75, height: 75},
         settings = $.extend({}, defaults, options),
-        images = settings['images'];
+        images = settings['images'],
+        clickHandler = settings['clickHandler'];
 
     $.each(images, function(index, value) {
       var image = new Image(),
+          imagePath = "./images/" + value,
           target = $(settings['target']);
-      image.src = "./images/" + value;
+
+      image.src = imagePath;
       image.onload = function() {
         var size = settings,
+            actualHeight = this.height,
+            actualWidth = this.width,
             newSize = determineSize(size, this),
             margin = determineMargin(size, newSize),
+            $image = $(image),
             $this = $(this);
 
         this.width = newSize.width;
@@ -89,9 +100,19 @@
           margin: margin
         });
         $this.addClass('unselectable');
-      };
 
-      target.append($("<li>").css({width: settings.width, height: settings.height}).append(image));
+        if (typeof clickHandler === 'function') {
+          $image.click(clickHandler);
+        }
+
+        $image.data('imageInfo', {
+          width: actualWidth,
+          height: actualHeight,
+          imagePath: imagePath
+        })
+
+        target.append($("<li>").css({width: settings.width, height: settings.height}).append(image));
+      };
     });
   }
 

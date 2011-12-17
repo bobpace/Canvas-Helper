@@ -4,6 +4,10 @@
   overflow: hidden;
 }
 
+#design-images {
+  height: 100px;
+}
+
 #design-images li {
   margin: 5px;
 }
