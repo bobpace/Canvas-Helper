@@ -2,14 +2,15 @@
   margin: 0 auto;
   width: 960px;
   overflow: hidden;
+  border: 1px solid gray;
+}
+
+#container > div {
+  overflow: hidden;
 }
 
 #design-images {
   height: 100px;
-}
-
-#design-images li {
-  margin: 5px;
 }
 
 #design-items {
@@ -26,6 +27,7 @@
 .horizontal-list li {
   display: inline;
   float: left;
+  margin: 5px;
 }
 
 .viewport {
@@ -40,16 +42,25 @@
   user-select: none;
 }
 
+#canvas-editor {
+  width: 600px;
+  height: 325px;
+  margin: auto;
+  position: relative;
+}
+
 #novella-viewport {
-  display: inline;
-  float: left;
   width: 153px;
   height: 190px;
+  position: absolute;
+  left: 0;
+  top: 67.5px;
 }
 
 #image-viewport {
-  display: inline;
-  float: right;
   width: 400px;
   height: 300px;
+  position: absolute;
+  left: 170px;
+  top: 12.5px;
 }

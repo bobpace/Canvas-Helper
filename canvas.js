@@ -17,7 +17,16 @@
         {},
         {},
         {},
-      ];
+      ],
+      $mainCanvas = $("#image-viewport"),
+      $previewCanvas = $("#novella-viewport"),
+      mainCanvas = new NovellaCanvas({
+        '$element': $mainCanvas
+      }),
+      previewCanvas = new NovellaCanvas({
+        overlaySrc: './images/previewWindow.png',
+        '$element': $previewCanvas
+      });
 
   
   loadImages({
@@ -25,7 +34,7 @@
       images: images,
       clickHandler: function() {
         var $this = $(this),
-            imageInfo = $this.data('imageInfo');
+            imageInfo = $this.data('image-info');
 
         console.log(imageInfo.imagePath);
       }
@@ -43,33 +52,43 @@
         items = settings['items'];
 
     $.each(items, function(index, value) {
-      var target = $(settings['target']);
-      target.append($("<li>").data('novella-canvas', new NovellaCanvas({
-        overlaySrc: './images/previewWindow.png'
-      })));
+      var target = $(settings['target']),
+          $element = $("<li>"),
+          novellaCanvas = new NovellaCanvas({
+            overlaySrc: './images/previewWindow.png',
+            '$element': $element
+          });
+
+      $element.data('novella-canvas', novellaCanvas)
+      target.append($element);
     });
   }
 
   function NovellaCanvas(options) {
-    var settings = $.extend({}, options),
-        overlaySrc = settings['overlaySrc'],
-        overlayImage;
+    var overlayImage,
+        self = this;
 
-    if (overlaySrc) {
+    $.extend(this, options);
+
+    if (this.overlaySrc) {
       overlayImage = new Image();
       overlayImage.onload = function() {
+        self.draw({width: this.width, height: this.height});
       };
-      overlayImage.src = this.overlaySrc = overlaySrc;
+      overlayImage.src = this.overlaySrc;
     }
 
-    this.draw = function(element) {
+    this.draw = function(size) {
       var canvas = $('<canvas>')[0],
           context = canvas.getContext('2d');
+
+      canvas.height = size.height;
+      canvas.width = size.width;
 
       if (overlayImage) {
         context.drawImage(overlayImage, 0, 0);
       }
-      element.html(canvas);
+      this.$element.html(canvas);
     };
   }
 
@@ -105,7 +124,7 @@
           $image.click(clickHandler);
         }
 
-        $image.data('imageInfo', {
+        $image.data('image-info', {
           width: actualWidth,
           height: actualHeight,
           imagePath: imagePath
