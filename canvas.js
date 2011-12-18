@@ -148,6 +148,45 @@
     return topMargin + "px " + sideMargin + "px";
   }
 
+  test({
+    width: 1200,
+    height: 800
+  });
+
+  function test(input) {
+    var scale = determineScale(
+          {width: 500, height: 500},
+          input
+        );
+    console.log(scale);
+  }
+
+  function canFit(boundingBox, sourceBox) {
+    return boundingBox.width >= sourceBox.width && boundingBox.height >= sourceBox.height;
+  }
+
+  function determineScale(boundingBox, sourceBox) {
+    var size, i, scale, scaledBox;
+
+    if(canFit(boundingBox, sourceBox)) {
+      return 1;
+    }
+    else {
+      size = determineSize(boundingBox, sourceBox)
+      for (i = 1; i <= 100; i++) {
+        scale = i / 100;
+        scaledBox = {
+          width: sourceBox.width * scale,
+          height: sourceBox.height * scale,
+        };
+
+        if (canFit(scaledBox, size)) {
+          return scale;
+        }
+      }
+    }
+    return 1;
+  }
 
   function determineSize(boundingBox, sourceBox) {
     var max_width = boundingBox.width,
