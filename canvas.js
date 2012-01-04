@@ -28,6 +28,14 @@
         '$element': $previewCanvas
       });
 
+$('<img/>').attr("src", './images/previewWindow.png').load(function () {
+      var pic_real_width = this.width || this.naturalWidth,
+          pic_real_height = this.height || this.naturalHeight;
+      console.log(pic_real_width);
+      console.log(pic_real_height);
+      $("body").append(this);
+     });
+
   
   loadImages({
       target: '#design-images',
@@ -35,8 +43,6 @@
       clickHandler: function() {
         var $this = $(this),
             imageInfo = $this.data('image-info');
-
-        console.log(imageInfo.imagePath);
       }
     }
   );
@@ -64,11 +70,34 @@
     });
   }
 
+  function ensureCanvas(canvas) {
+    if (typeof G_vmlCanvasManager !== 'undefined') {
+      G_vmlCanvasManager.initElement(canvas);
+    }
+  }
+
   function NovellaCanvas(options) {
     var overlayImage,
         self = this;
 
     $.extend(this, options);
+
+    this.draw = function(size) {
+      var canvas = document.createElement('canvas'),
+          context;
+
+      canvas.height = size.height;
+      canvas.width = size.width;
+
+      this.$element.append(canvas);
+
+      ensureCanvas(canvas);
+      context = canvas.getContext('2d');
+
+      if (overlayImage) {
+        context.drawImage(overlayImage, 0, 0);
+      }
+    };
 
     if (this.overlaySrc) {
       overlayImage = new Image();
@@ -78,18 +107,6 @@
       overlayImage.src = this.overlaySrc;
     }
 
-    this.draw = function(size) {
-      var canvas = $('<canvas>')[0],
-          context = canvas.getContext('2d');
-
-      canvas.height = size.height;
-      canvas.width = size.width;
-
-      if (overlayImage) {
-        context.drawImage(overlayImage, 0, 0);
-      }
-      this.$element.html(canvas);
-    };
   }
 
   function loadImages(options) {
@@ -158,7 +175,6 @@
           {width: 500, height: 500},
           input
         );
-    console.log(scale);
   }
 
   function canFit(boundingBox, sourceBox) {
@@ -177,7 +193,7 @@
         scale = i / 100;
         scaledBox = {
           width: sourceBox.width * scale,
-          height: sourceBox.height * scale,
+          height: sourceBox.height * scale
         };
 
         if (canFit(scaledBox, size)) {
